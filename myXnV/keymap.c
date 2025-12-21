@@ -217,6 +217,23 @@ bool is_mouse_record_user(uint16_t keycode, keyrecord_t* record) {
   return false;
 }
 
+bool caps_word_press_user(uint16_t keycode) {
+  switch (keycode) {
+    case KC_A ... KC_Z:
+      add_weak_mods(MOD_BIT(KC_LSFT));
+      return true;
+    case KC_1 ... KC_0:
+    case KC_BSPC:
+    case KC_DEL:
+    case KC_MINS:
+    case KC_UNDS:
+    case KC_SLSH:
+      return true;
+    default:
+      return false;
+  }
+}
+
 
 typedef struct {
     bool is_press_action;
